@@ -1,4 +1,4 @@
-console.log('Loaded!');
+/*console.log('Loaded!');
 //change the text of main text div
 
 var element = document.getElementById('main-text');
@@ -18,4 +18,19 @@ var moveRight = function(){
 img.onclick = function(){
     var interval = setInterval(moveRight,50);
     img.style.marginRight ='100px';
-}
+}*/
+
+
+//Counter code
+var button =doccument.getElementById('counter');
+button.onclcik = function(){
+    //make a request to the counter endpoint
+    
+    //Capture the respons eans store it in a variable
+    
+    //Render the vriable in the correct span
+    
+    counter = counter +1;
+    var span = document.getElementById('count');
+    span.innerHTML = counter.toString();
+};
