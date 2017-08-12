@@ -23,7 +23,7 @@ img.onclick = function(){
 
 //Counter code
 var button =document.getElementById('counter');
-button.onclcik = function(){
+button.onclick = function(){
     //make a request to the counter endpoint
     
     //Capture the respons eans store it in a variable
