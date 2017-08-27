@@ -118,6 +118,37 @@ app.get('/hash/:input', function (req, res){
     res.send(hashedString);
 });
 
+
+app.post('/login', function(req,res){
+    //username and password will be created and stored in the password
+    //{"username": "raja28april", "password" : "password"}
+    //result in JSON format
+    
+    var username = req.body.username;
+    var password = req.body.password;
+    
+    pool.query('SELECT * FROM "user" username =$1',[username], function(err, result) {
+        if(err){
+           res.status(500).send(err.toString());
+       } else{
+           if(result.rows.length===0){
+               res.status(403).send('username/password is invalid');
+            }else{
+           //Match the password
+           var dbString = result.row[0].password;
+           var salt = dbString.split('$')[2];
+           var hashedPassword = hash(password,salt);//Creating a hash based on the password submitted and the original salt
+           if(hashedPassword===dbString){
+               res.send('credentials correct!')
+           }else{
+               res.send(403).send('username/password is invalid')
+           }
+        }
+       }
+    });
+});
+
+
 app.post('/create-user', function(req,res){
     //username and password will be created and stored in the password
     //{"username": "raja28april", "password" : "password"}
